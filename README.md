@@ -74,6 +74,10 @@ No modules.
 
 See LICENSE file for full details.
 
+## Maintainers
+
+* [Marcin Cuber](https://github.com/marcincuber)
+
 ## Pre-commit hooks
 
 ### Install dependencies
