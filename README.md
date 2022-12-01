@@ -1,6 +1,10 @@
 # terraform-aws-mq
 Terraform module for provisioning an Amazon MQ broker
 
+## Examples
+
+* [ActiveMQ](https://github.com/dare-global/terraform-aws-mq/tree/main/examples/activemq)
+* [RabbitMQ](https://github.com/dare-global/terraform-aws-mq/tree/main/examples/rabbitmq)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
