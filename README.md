@@ -1,6 +1,18 @@
 # terraform-aws-mq
 Terraform module for provisioning an Amazon MQ broker
 
+## Usage
+
+```hcl
+module "mq" {
+  source  = "dare-global/mq/aws"
+  version = " 1.0.0"
+
+  broker_name = "mq-broker"
+  subnet_ids = ["subnet-id-12345"]
+}
+```
+
 ## Examples
 
 * [ActiveMQ](https://github.com/dare-global/terraform-aws-mq/tree/main/examples/activemq)
