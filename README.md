@@ -6,7 +6,7 @@ Terraform module for provisioning an Amazon MQ broker
 ```hcl
 module "mq" {
   source  = "dare-global/mq/aws"
-  version = " 1.0.0"
+  version = "1.X.X"
 
   broker_name = "mq-broker"
   subnet_ids = ["subnet-id-12345"]
