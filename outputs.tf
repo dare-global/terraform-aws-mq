@@ -8,7 +8,7 @@ output "broker_arn" {
   description = "AmazonMQ broker ARN."
 }
 
-output "broker_ips" {
-  value       = aws_mq_broker.main.instances.0.ip_address
-  description = "AmazonMQ broker ARN."
+output "broker_instances" {
+  value       = aws_mq_broker.main.instances
+  description = "AmazonMQ broker instances details."
 }
