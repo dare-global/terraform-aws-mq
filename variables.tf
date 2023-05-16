@@ -3,6 +3,11 @@ variable "broker_name" {
   description = "Name of the broker"
 }
 
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID"
+}
+
 variable "subnet_ids" {
   type        = list(string)
   description = "List of VPC subnet IDs"
@@ -156,4 +161,63 @@ variable "tags" {
   description = "A mapping of tags to assign to all resources"
   type        = map(string)
   default     = {}
+}
+
+variable "nlb_enabled" {
+  description = "Flag to attach Network Load Balancer to Active MQ"
+  type        = bool
+  default     = false
+}
+
+variable "nlb_name" {
+  description = "Name of the NLB"
+  type        = string
+  default     = ""
+}
+
+variable "nlb_internal" {
+  description = "Scheme type of the NLB, valid value is true or false where true is for internal and false for internet facing"
+  type        = bool
+  default     = true
+}
+
+variable "nlb_subnet_ids" {
+  description = "Subnet IDs for the NLB"
+  type        = list(string)
+  default     = []
+}
+
+variable "enable_cross_zone_load_balancing" {
+  description = "Flag to enable/disable cross zone load balancing of the NLB"
+  type        = bool
+  default     = true
+}
+
+variable "enable_deletion_protection" {
+  description = "Flag to enable/disable deletion of NLB via AWS API and Terraform"
+  type        = bool
+  default     = false
+}
+
+variable "nlb_certificate_arn" {
+  description = "Ceritificate ARN of NLB"
+  type        = string
+  default     = ""
+
+  validation {
+    condition     = var.nlb_enabled && var.nlb_certificate_arn == ""
+    error_message = "NLB Certificate is mandatory"
+  }
+}
+
+variable "nlb_tg_port" {
+  description = "Target Group Port for NLB"
+  type        = number
+  default     = 8883
+}
+
+variable "nlb_tg_protocol" {
+  description = "Target Group Protocol for NLB"
+  type        = string
+  default     = "TCP"
 }
