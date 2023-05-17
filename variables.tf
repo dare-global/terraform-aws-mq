@@ -210,3 +210,134 @@ variable "nlb_tg_protocol" {
   type        = string
   default     = "TCP"
 }
+
+variable "create_security_group" {
+  description = "Flag to create Security Group for the broker"
+  type        = bool
+  default     = false
+}
+
+variable "security_group_name" {
+  description = "Name of the Security Group"
+  type        = string
+  default     = ""
+}
+
+variable "security_group_description" {
+  description = "Description of the Security Group"
+  type        = string
+  default     = ""
+
+  validation {
+    condition = var.security_group_description == ""
+    error     = "Security Group description can't be null"
+  }
+}
+
+variable "security_group_tags" {
+  description = "A mapping of additional tags to be attached to the Security Group"
+  type        = map(string)
+  default     = {}
+}
+
+variable "revoke_rules_on_delete" {
+  description = "Instruct Terraform to revoke all of the Security Groups attached ingress and egress rules before deleting the rule itself."
+  type        = string
+  default     = true
+}
+
+variable "cidr_blocks_8883" {
+  description = "Cidr block for the MQTT security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "prefix_lists_8883" {
+  description = "Prefix list ids for the MQTT security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "cidr_blocks_8162" {
+  description = "Cidr blocks for the ActiveMQ Console security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "prefix_lists_8162" {
+  description = "Prefix list ids for the ActiveMQ Console security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "cidr_blocks_61619" {
+  description = "Cidr block for the websocket security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "prefix_lists_61619" {
+  description = "Prefix list ids for the websocket security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "cidr_blocks_5671" {
+  description = "Cidr block for connections made via SSL AMQP security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "prefix_lists_5671" {
+  description = "Prefix list ids for connections made via SSL AMQP URL security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "cidr_blocks_443" {
+  description = "Cidr blocks for the Amazon MQ for RabbitMQ Console security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "prefix_lists_443" {
+  description = "Prefix list ids for the Amazon MQ for RabbitMQ Console security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "cidr_blocks_15671" {
+  description = "Cidr blocks for the Amazon MQ for RabbitMQ Console security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "prefix_lists_15671" {
+  description = "Prefix list ids for the Amazon MQ for RabbitMQ Console security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "cidr_blocks_61617" {
+  description = "Cidr blocks for the Amazon MQ SSL security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "prefix_lists_61617" {
+  description = "Prefix list ids for the Amazon MQ SSL security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "cidr_blocks_61614" {
+  description = "Cidr blocks for the Amazon MQ Stomp SSL security group ingress rule"
+  type        = list(string)
+  default     = []
+}
+
+variable "prefix_lists_61614" {
+  description = "Prefix list ids for the Amazon MQ Stomp SSL security group ingress rule"
+  type        = list(string)
+  default     = []
+}
