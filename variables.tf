@@ -181,12 +181,6 @@ variable "nlb_internal" {
   default     = true
 }
 
-variable "nlb_subnet_ids" {
-  description = "Subnet IDs for the NLB"
-  type        = list(string)
-  default     = []
-}
-
 variable "enable_cross_zone_load_balancing" {
   description = "Flag to enable/disable cross zone load balancing of the NLB"
   type        = bool

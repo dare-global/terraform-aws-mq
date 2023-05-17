@@ -1,10 +1,10 @@
 resource "aws_lb" "main" {
-  count = var.nlb_enabled ? 1 : 0
+  count = var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ" ? 1 : 0
 
-  name               = var.nlb_name
+  name               = var.nlb_name == "" ? "${var.broker_name}-nlb" : var.nlb_name
   internal           = var.nlb_internal
   load_balancer_type = "network"
-  subnets            = var.nlb_subnet_ids
+  subnets            = var.subnet_ids
 
   enable_cross_zone_load_balancing = var.enable_cross_zone_load_balancing
   enable_deletion_protection       = var.enable_deletion_protection
@@ -13,9 +13,9 @@ resource "aws_lb" "main" {
 }
 
 resource "aws_lb_target_group" "main" {
-  count = var.nlb_enabled ? 1 : 0
+  count = var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ" ? 1 : 0
 
-  name        = var.nlb_name
+  name        = aws_lb.main.name
   port        = var.nlb_tg_port
   protocol    = var.nlb_tg_protocol
   target_type = "ip"
@@ -31,7 +31,7 @@ resource "aws_lb_target_group" "main" {
 }
 
 resource "aws_lb_target_group_attachment" "main" {
-  for_each = toset([for instance in aws_mq_broker.main.instances : instance["ip_address"] if var.nlb_enabled])
+  for_each = toset([for instance in aws_mq_broker.main.instances : instance["ip_address"] if(var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ")])
 
   target_group_arn = aws_lb_target_group.main.arn
   target_id        = each.value
@@ -39,7 +39,7 @@ resource "aws_lb_target_group_attachment" "main" {
 }
 
 resource "aws_lb_listener" "main" {
-  count = var.nlb_enabled ? 1 : 0
+  count = var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ" ? 1 : 0
 
   load_balancer_arn = aws_lb.main.arn
   port              = "8883"
