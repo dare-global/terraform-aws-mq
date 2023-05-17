@@ -23,6 +23,8 @@ resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_8883" {
   from_port         = 8883
   to_port           = 8883
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "prefix_lists_8883" {
@@ -34,6 +36,8 @@ resource "aws_vpc_security_group_ingress_rule" "prefix_lists_8883" {
   from_port         = 8883
   to_port           = 8883
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_8162" {
@@ -45,6 +49,8 @@ resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_8162" {
   from_port         = 8162
   to_port           = 8162
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "prefix_lists_8162" {
@@ -56,6 +62,8 @@ resource "aws_vpc_security_group_ingress_rule" "prefix_lists_8162" {
   from_port         = 8162
   to_port           = 8162
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_61619" {
@@ -67,6 +75,8 @@ resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_61619" {
   from_port         = 61619
   to_port           = 61619
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "prefix_lists_61619" {
@@ -78,6 +88,8 @@ resource "aws_vpc_security_group_ingress_rule" "prefix_lists_61619" {
   from_port         = 61619
   to_port           = 61619
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_5671" {
@@ -89,6 +101,8 @@ resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_5671" {
   from_port         = 5671
   to_port           = 5671
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "prefix_lists_5671" {
@@ -100,6 +114,8 @@ resource "aws_vpc_security_group_ingress_rule" "prefix_lists_5671" {
   from_port         = 5671
   to_port           = 5671
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_443" {
@@ -111,6 +127,8 @@ resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_443" {
   from_port         = 443
   to_port           = 443
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "prefix_lists_443" {
@@ -122,6 +140,8 @@ resource "aws_vpc_security_group_ingress_rule" "prefix_lists_443" {
   from_port         = 443
   to_port           = 443
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_15671" {
@@ -133,6 +153,8 @@ resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_15671" {
   from_port         = 15671
   to_port           = 15671
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "prefix_lists_15671" {
@@ -144,6 +166,8 @@ resource "aws_vpc_security_group_ingress_rule" "prefix_lists_15671" {
   from_port         = 15671
   to_port           = 15671
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_61617" {
@@ -155,6 +179,8 @@ resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_61617" {
   from_port         = 61617
   to_port           = 61617
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "prefix_lists_61617" {
@@ -166,6 +192,8 @@ resource "aws_vpc_security_group_ingress_rule" "prefix_lists_61617" {
   from_port         = 61617
   to_port           = 61617
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_61614" {
@@ -177,6 +205,8 @@ resource "aws_vpc_security_group_ingress_rule" "cidr_blocks_61614" {
   from_port         = 61614
   to_port           = 61614
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_ingress_rule" "prefix_lists_61614" {
@@ -188,6 +218,8 @@ resource "aws_vpc_security_group_ingress_rule" "prefix_lists_61614" {
   from_port         = 61614
   to_port           = 61614
   ip_protocol       = "tcp"
+
+  tags = merge(var.tags, var.security_group_tags)
 }
 
 resource "aws_vpc_security_group_egress_rule" "main" {
