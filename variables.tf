@@ -3,11 +3,6 @@ variable "broker_name" {
   description = "Name of the broker"
 }
 
-variable "vpc_id" {
-  type        = string
-  description = "VPC ID"
-}
-
 variable "subnet_ids" {
   type        = list(string)
   description = "List of VPC subnet IDs"

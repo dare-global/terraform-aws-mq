@@ -19,7 +19,7 @@ resource "aws_lb_target_group" "main" {
   port        = var.nlb_tg_port
   protocol    = var.nlb_tg_protocol
   target_type = "ip"
-  vpc_id      = var.vpc_id
+  vpc_id      = data.aws_subnet.main.vpc_id
 
   health_check {
     enabled           = true
