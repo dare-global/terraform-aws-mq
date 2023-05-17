@@ -1,7 +1,7 @@
 resource "aws_lb" "main" {
   count = var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ" ? 1 : 0
 
-  name               = var.nlb_name == "" ? "${var.broker_name}-nlb" : var.nlb_name
+  name               = var.nlb_name == null ? "${var.broker_name}-nlb" : var.nlb_name
   internal           = var.nlb_internal
   load_balancer_type = "network"
   subnets            = var.subnet_ids

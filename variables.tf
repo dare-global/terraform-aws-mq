@@ -167,7 +167,7 @@ variable "nlb_enabled" {
 variable "nlb_name" {
   description = "Name of the NLB"
   type        = string
-  default     = ""
+  default     = null
 }
 
 variable "nlb_internal" {
