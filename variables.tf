@@ -185,18 +185,13 @@ variable "enable_cross_zone_load_balancing" {
 variable "enable_deletion_protection" {
   description = "Flag to enable/disable deletion of NLB via AWS API and Terraform"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "nlb_certificate_arn" {
   description = "Ceritificate ARN of NLB"
   type        = string
-  default     = ""
-
-  validation {
-    condition     = var.nlb_enabled && var.nlb_certificate_arn == ""
-    error_message = "NLB Certificate is mandatory"
-  }
+  default     = null
 }
 
 variable "nlb_tg_port" {
@@ -209,6 +204,12 @@ variable "nlb_tg_protocol" {
   description = "Target Group Protocol for NLB"
   type        = string
   default     = "TCP"
+}
+
+variable "nlb_tags" {
+  description = "A mapping of additional tags to be attached to the NLB"
+  type        = map(string)
+  default     = {}
 }
 
 variable "create_security_group" {
@@ -226,12 +227,7 @@ variable "security_group_name" {
 variable "security_group_description" {
   description = "Description of the Security Group"
   type        = string
-  default     = ""
-
-  validation {
-    condition = var.security_group_description == ""
-    error     = "Security Group description can't be null"
-  }
+  default     = "Security Group for the AWS MQ"
 }
 
 variable "security_group_tags" {

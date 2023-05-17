@@ -9,13 +9,17 @@ resource "aws_lb" "main" {
   enable_cross_zone_load_balancing = var.enable_cross_zone_load_balancing
   enable_deletion_protection       = var.enable_deletion_protection
 
-  tags = var.tags
+  tags = merge(var.nlb_tags, var.tags)
+
+  depends_on = [
+    aws_mq_broker.main,
+  ]
 }
 
 resource "aws_lb_target_group" "main" {
   count = var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ" ? 1 : 0
 
-  name        = aws_lb.main.name
+  name        = aws_lb.main[0].name
   port        = var.nlb_tg_port
   protocol    = var.nlb_tg_protocol
   target_type = "ip"
@@ -28,20 +32,28 @@ resource "aws_lb_target_group" "main" {
     interval          = 10
     healthy_threshold = 3
   }
+
+  depends_on = [
+    aws_lb.main,
+  ]
 }
 
 resource "aws_lb_target_group_attachment" "main" {
   for_each = toset([for instance in aws_mq_broker.main.instances : instance["ip_address"] if(var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ")])
 
-  target_group_arn = aws_lb_target_group.main.arn
+  target_group_arn = aws_lb_target_group.main[0].arn
   target_id        = each.value
   port             = 8883
+
+  depends_on = [
+    aws_lb.main,
+  ]
 }
 
 resource "aws_lb_listener" "main" {
   count = var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ" ? 1 : 0
 
-  load_balancer_arn = aws_lb.main.arn
+  load_balancer_arn = aws_lb.main[0].arn
   port              = "8883"
   protocol          = "TLS"
   certificate_arn   = var.nlb_certificate_arn
@@ -50,6 +62,10 @@ resource "aws_lb_listener" "main" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.main.arn
+    target_group_arn = aws_lb_target_group.main[0].arn
   }
+
+  depends_on = [
+    aws_lb.main,
+  ]
 }
