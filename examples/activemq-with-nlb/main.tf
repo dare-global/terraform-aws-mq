@@ -36,7 +36,9 @@ module "active_mq" {
 
   broker_name = "my-active-mq-broker"
 
-  subnet_ids = data.aws_subnets.all.ids
+  subnet_ids = [data.aws_subnets.all.ids[0], data.aws_subnets.all.ids[1]]
+
+  security_groups = ["sg-0685f7fc5624752b1"]
 
   engine_type        = "ActiveMQ"
   engine_version     = "5.17.2"
