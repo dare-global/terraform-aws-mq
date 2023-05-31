@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 data "aws_vpc" "default" {
-  id = ""
+  id = "vpc-03eec2463877cec00"
 }
 
 data "aws_subnets" "all" {
@@ -65,16 +65,16 @@ module "active_mq" {
 </broker>
 DATA
 
-  nlb_enabled         = true
-  nlb_certificate_arn = ""
+  nlb_enabled = true
+  #  nlb_certificate_arn = "arn:aws:acm:eu-west-2:837520006200:certificate/dfeb4699-f8f1-4cc5-b1bc-21c9694c650b"
 
   create_security_group      = true
   security_group_name        = "example"
   security_group_description = "example"
   cidr_blocks_8883           = [data.aws_vpc.default.cidr_block]
-  prefix_lists_8883          = [data.aws_ec2_managed_prefix_list.example.id]
+  prefix_lists_8883          = [data.aws_ec2_managed_prefix_list.asset_control_vpn_office_cidrs.id]
 }
 
-data "aws_ec2_managed_prefix_list" "example" {
-  name = "example"
+data "aws_ec2_managed_prefix_list" "asset_control_vpn_office_cidrs" {
+  name = "com.amazonaws.eu-west-2.s3"
 }
