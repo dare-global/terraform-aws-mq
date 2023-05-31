@@ -67,8 +67,8 @@ module "active_mq" {
 </broker>
 DATA
 
-  nlb_enabled = true
-  #  nlb_certificate_arn = "arn:aws:acm:eu-west-2:837520006200:certificate/dfeb4699-f8f1-4cc5-b1bc-21c9694c650b"
+  nlb_enabled         = true
+  nlb_certificate_arn = "arn:aws:acm:eu-west-2:837520006200:certificate/dfeb4699-f8f1-4cc5-b1bc-21c9694c650b"
 
   create_security_group      = true
   security_group_name        = "example"
