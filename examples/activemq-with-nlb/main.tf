@@ -11,7 +11,7 @@ provider "aws" {
 }
 
 data "aws_vpc" "default" {
-  default = true
+  id = "<example>"
 }
 
 data "aws_subnets" "all" {
@@ -19,11 +19,16 @@ data "aws_subnets" "all" {
     name   = "vpc-id"
     values = [data.aws_vpc.default.id]
   }
+
+  filter {
+    name   = "tag:Name"
+    values = ["*private*"]
+  }
 }
 
 locals {
   mq_admin_user     = "adminUsername"
-  mq_admin_password = "adminPass"
+  mq_admin_password = "adminPassword"
 }
 
 module "active_mq" {
@@ -31,7 +36,9 @@ module "active_mq" {
 
   broker_name = "my-active-mq-broker"
 
-  subnet_ids = [data.aws_subnets.all.ids[0]]
+  subnet_ids = [data.aws_subnets.all.ids[0], data.aws_subnets.all.ids[1]]
+
+  security_groups = ["<example>"]
 
   engine_type        = "ActiveMQ"
   engine_version     = "5.17.2"
@@ -39,7 +46,7 @@ module "active_mq" {
 
   apply_immediately = true
 
-  deployment_mode = "SINGLE_INSTANCE"
+  deployment_mode = "ACTIVE_STANDBY_MULTI_AZ"
 
   encryption_enabled = false
 
@@ -59,4 +66,17 @@ module "active_mq" {
   </plugins>
 </broker>
 DATA
+
+  nlb_enabled         = true
+  nlb_certificate_arn = "<example>"
+
+  create_security_group      = true
+  security_group_name        = "<example>"
+  security_group_description = "example"
+  cidr_blocks_8883           = [data.aws_vpc.default.cidr_block]
+  prefix_lists_8883          = [data.aws_ec2_managed_prefix_list.default.id]
+}
+
+data "aws_ec2_managed_prefix_list" "default" {
+  name = "<example>"
 }
