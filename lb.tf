@@ -39,14 +39,11 @@ resource "aws_lb_target_group" "main" {
 }
 
 resource "aws_lb_target_group_attachment" "main" {
-  #  TODO check this logic
-  #  for_each = toset([for instance in aws_mq_broker.main.instances : instance["ip_address"] if(var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ")])
   count = (var.nlb_enabled && var.deployment_mode == "ACTIVE_STANDBY_MULTI_AZ") ? length(var.subnet_ids) : 0
 
   target_group_arn = aws_lb_target_group.main[0].arn
-  #  target_id        = each.value
-  target_id = aws_mq_broker.main.instances[count.index]["ip_address"]
-  port      = 8883
+  target_id        = aws_mq_broker.main.instances[count.index]["ip_address"]
+  port             = 8883
 
   depends_on = [
     aws_mq_broker.main,
