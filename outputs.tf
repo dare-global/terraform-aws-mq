@@ -14,11 +14,11 @@ output "broker_instances" {
 }
 
 output "nlb_dns_name" {
-  value       = aws_lb.main.dns_name
+  value       = aws_lb.main[0].dns_name
   description = "NLB DNS Name."
 }
 
 output "nlb_zone_id" {
-  value       = aws_lb.main.zone_id
+  value       = aws_lb.main[0].zone_id
   description = "NLB Zone Id."
 }
