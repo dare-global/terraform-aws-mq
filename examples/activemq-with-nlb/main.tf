@@ -74,9 +74,9 @@ DATA
   security_group_name        = "<example>"
   security_group_description = "example"
   cidr_blocks_8883           = [data.aws_vpc.default.cidr_block]
-  prefix_lists_8883          = [data.aws_ec2_managed_prefix_list.asset_control_vpn_office_cidrs.id]
+  prefix_lists_8883          = [data.aws_ec2_managed_prefix_list.default.id]
 }
 
-data "aws_ec2_managed_prefix_list" "asset_control_vpn_office_cidrs" {
+data "aws_ec2_managed_prefix_list" "default" {
   name = "<example>"
 }
