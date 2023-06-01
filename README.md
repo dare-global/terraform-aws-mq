@@ -134,6 +134,8 @@ No modules.
 | <a name="output_broker_arn"></a> [broker\_arn](#output\_broker\_arn) | AmazonMQ broker ARN. |
 | <a name="output_broker_id"></a> [broker\_id](#output\_broker\_id) | AmazonMQ broker ID. |
 | <a name="output_broker_instances"></a> [broker\_instances](#output\_broker\_instances) | AmazonMQ broker instances details. |
+| <a name="output_nlb_dns_name"></a> [nlb\_dns\_name](#output\_nlb\_dns\_name) | NLB DNS Name. |
+| <a name="output_nlb_zone_id"></a> [nlb\_zone\_id](#output\_nlb\_zone\_id) | NLB Zone Id. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 ## License
