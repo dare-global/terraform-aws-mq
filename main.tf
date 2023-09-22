@@ -27,7 +27,7 @@ resource "aws_mq_broker" "main" {
 
   authentication_strategy = var.authentication_strategy
 
-  security_groups = var.create_security_group ? merge(var.security_groups, [aws_security_group.main[0].id]) : var.security_groups
+  security_groups = var.create_security_group ? concat(var.security_groups, [aws_security_group.main[0].id]) : var.security_groups
 
   dynamic "configuration" {
     for_each = var.configuration_enabled ? ["true"] : []
