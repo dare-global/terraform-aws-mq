@@ -3,7 +3,7 @@ resource "aws_security_group" "main" {
 
   name        = var.security_group_name
   description = var.security_group_description
-  vpc_id      = data.aws_subnet.main.vpc_id
+  vpc_id      = data.aws_subnet.main[0].vpc_id
 
   revoke_rules_on_delete = var.revoke_rules_on_delete
 
