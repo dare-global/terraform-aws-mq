@@ -30,7 +30,7 @@ module "mq" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.0.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.0.0 |
 
 ## Modules
 
@@ -122,7 +122,7 @@ No modules.
 | <a name="input_security_group_tags"></a> [security\_group\_tags](#input\_security\_group\_tags) | A mapping of additional tags to be attached to the Security Group | `map(string)` | `{}` | no |
 | <a name="input_security_groups"></a> [security\_groups](#input\_security\_groups) | List of security group IDs assigned to the broker | `list(string)` | `[]` | no |
 | <a name="input_storage_type"></a> [storage\_type](#input\_storage\_type) | Storage type of the broker. For engine\_type ActiveMQ, the valid values are efs and ebs, and the AWS-default is efs. For engine\_type RabbitMQ, only ebs is supported. When using ebs, only the mq.m5 broker instance type family is supported. | `string` | `null` | no |
-| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of VPC subnet IDs | `list(string)` | n/a | yes |
+| <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | List of VPC subnet IDs | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign to all resources | `map(string)` | `{}` | no |
 | <a name="input_use_aws_owned_key"></a> [use\_aws\_owned\_key](#input\_use\_aws\_owned\_key) | Boolean to enable an AWS owned Key Management Service (KMS) Customer Master Key (CMK) for Amazon MQ encryption that is not in your account | `bool` | `null` | no |
 | <a name="input_username"></a> [username](#input\_username) | Username for the admin user | `string` | `"admin"` | no |
