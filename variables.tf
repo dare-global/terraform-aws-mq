@@ -6,6 +6,7 @@ variable "broker_name" {
 variable "subnet_ids" {
   type        = list(string)
   description = "List of VPC subnet IDs"
+  default     = []
 }
 
 variable "security_groups" {
