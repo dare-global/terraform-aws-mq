@@ -18,7 +18,7 @@ module "mq" {
 * [ActiveMQ](https://github.com/dare-global/terraform-aws-mq/tree/main/examples/activemq)
 * [RabbitMQ](https://github.com/dare-global/terraform-aws-mq/tree/main/examples/rabbitmq)
 
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
@@ -136,7 +136,7 @@ No modules.
 | <a name="output_broker_instances"></a> [broker\_instances](#output\_broker\_instances) | AmazonMQ broker instances details. |
 | <a name="output_nlb_dns_name"></a> [nlb\_dns\_name](#output\_nlb\_dns\_name) | NLB DNS Name. |
 | <a name="output_nlb_zone_id"></a> [nlb\_zone\_id](#output\_nlb\_zone\_id) | NLB Zone Id. |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
 
 ## License
 

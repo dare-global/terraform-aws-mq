@@ -27,7 +27,7 @@ resource "aws_lb_target_group" "main" {
 
   health_check {
     enabled           = true
-    port              = 8162
+    port              = 8883
     protocol          = "TCP"
     interval          = 10
     healthy_threshold = 3
